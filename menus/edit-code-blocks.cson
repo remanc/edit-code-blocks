@@ -1,0 +1,16 @@
+# See https://atom.io/docs/latest/creating-a-package#menus for more details
+'context-menu':
+  '.overlayer':
+      'Enable edit-code-blocks': 'edit-code-blocks:toggle'
+
+'menu': [
+  {
+    'label': 'Packages'
+    'submenu': [
+      'label': 'edit-code-blocks'
+      'submenu': [
+        { 'label': 'Toggle', 'command': 'edit-code-blocks:toggle' }
+      ]
+    ]
+  }
+]
