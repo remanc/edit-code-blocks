@@ -3,12 +3,15 @@
   "main": "./lib/edit-code-blocks",
   "version": "0.0.1",
   "description": "A short description of your package",
-  "activationEvents": ["edit-code-blocks:capture"],
+  "activationEvents": [
+    "edit-code-blocks:capture"
+  ],
   "repository": "https://github.com/remanc/edit-code-blocks",
   "license": "MIT",
   "engines": {
     "atom": ">0.50.0"
   },
   "dependencies": {
+    "lodash": "^2.4.1"
   }
 }

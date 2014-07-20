@@ -48,7 +48,7 @@ class PartialEditorView extends View
     range = [[screenRowRange[0], 0], [screenRowRange[1], MAX_LINE_LENGTH]]
     @marker = editor.markScreenRange range,
       invalidate: 'never'
-      class: 'scratch-mark'
+      class: 'ecb-mark'
       persistent: false
     @editorView = createEditorView @editor
     blockCursorIf @editor, 'moveCursorUp', (currentRow) =>
