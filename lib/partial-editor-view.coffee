@@ -55,11 +55,12 @@ class PartialEditorView extends View
       currentRow - 1 < @marker.getTailScreenPosition().row
     blockCursorIf @editor, 'moveCursorDown', (currentRow) =>
       currentRow + 1 > @marker.getHeadScreenPosition().row
-    @titleEl.append getTitleFromUri @editor.buffer.getUri()
+    @setTitle()
     @editorEl.append @editorView
     @handleEvents()
 
   handleEvents: ->
+    @subscribe @editor, 'modified-status-changed', => @setTitle()
     @subscribe @editor, 'screen-lines-changed', => @setPartial()
     @subscribe @editorView, 'editor:attached', => @setPartial()
     @subscribe @editorView.verticalScrollbar, 'scroll', => @snapToPartial()
@@ -71,6 +72,11 @@ class PartialEditorView extends View
         bufferPos = @marker.getTailBufferPosition()
         editor.scrollToBufferPosition bufferPos
         editor.setCursorBufferPosition bufferPos
+
+  setTitle: ->
+    title = getTitleFromUri @editor.buffer.getUri()
+    title += ' ~' if @editor.isModified()
+    @titleEl.html title
 
   setPartial: ->
     @editorView.scrollTop markerTopPx @marker, @editorView
