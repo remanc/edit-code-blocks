@@ -42,7 +42,8 @@ class PartialEditorView extends View
           @div class: 'btn-toolbar pull-right', =>
             @button class: 'btn', outlet: 'goEl', 'Go to file'
           @span outlet: 'titleEl'
-        @div class: "panel-body padded", outlet: 'editorEl'
+        @div class: "panel-body padding", =>
+          @div class: "item-views", outlet: 'editorEl'
 
   initialize: (@editor, screenRowRange) ->
     range = [[screenRowRange[0], 0], [screenRowRange[1], MAX_LINE_LENGTH]]
