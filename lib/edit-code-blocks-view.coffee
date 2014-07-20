@@ -38,7 +38,7 @@ class EditCodeBlocksView extends ScrollView
   @content: ->
     @div class: 'edit-code-blocks-view', tabindex: -1
 
-  constructor: ({@host, @pathname}) ->
+  constructor: ({@protocol, @host}) ->
     super
     @command 'core:close', (e) => @closePartial(e)
     @command 'edit-code-blocks:jump-partial-down', => @jumpDown()
@@ -46,11 +46,10 @@ class EditCodeBlocksView extends ScrollView
     @command 'edit-code-blocks:move-partial-down', => @moveDown()
     @command 'edit-code-blocks:move-partial-up', => @moveUp()
 
-  getTitle: ->
-    @getUri()
+  getTitle: -> @getUri()
 
   getUri: ->
-    "ecb://ecb"
+    "#{@protocol}//#{@host}"
 
   save: ->
     findActiveEditor(this)?.save()

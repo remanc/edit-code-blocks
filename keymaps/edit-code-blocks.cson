@@ -1,17 +1,12 @@
-# Keybindings require three things to be fully defined: A selector that is
-# matched against the focused element, the keystroke and the command to
-# execute.
-#
-# Below is a basic keybinding which registers on all platforms by applying to
-# the root workspace element.
-
-# For more detailed documentation see
-# https://atom.io/docs/latest/advanced/keymaps
-'.workspace':
-  'ctrl-alt-c': 'edit-code-blocks:capture'
-
 '.edit-code-blocks-view':
   'cmd-down': 'edit-code-blocks:jump-partial-down'
   'cmd-up': 'edit-code-blocks:jump-partial-up'
   'cmd-shift-down': 'edit-code-blocks:move-partial-down'
   'cmd-shift-up': 'edit-code-blocks:move-partial-up'
+
+'.editor':
+  'cmd-1': 'edit-code-blocks:capture1'
+  'cmd-2': 'edit-code-blocks:capture2'
+  'cmd-3': 'edit-code-blocks:capture3'
+  'cmd-4': 'edit-code-blocks:capture4'
+  'cmd-5': 'edit-code-blocks:capture5'

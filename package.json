@@ -4,7 +4,11 @@
   "version": "0.0.1",
   "description": "A short description of your package",
   "activationEvents": [
-    "edit-code-blocks:capture",
+    "edit-code-blocks:capture1",
+    "edit-code-blocks:capture2",
+    "edit-code-blocks:capture3",
+    "edit-code-blocks:capture4",
+    "edit-code-blocks:capture5",
     "edit-code-blocks:jump-partial-up",
     "edit-code-blocks:jump-partial-down",
     "edit-code-blocks:move-partial-up",
