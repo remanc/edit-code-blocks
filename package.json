@@ -4,7 +4,9 @@
   "version": "0.0.1",
   "description": "A short description of your package",
   "activationEvents": [
-    "edit-code-blocks:capture"
+    "edit-code-blocks:capture",
+    "edit-code-blocks:move-partial-up",
+    "edit-code-blocks:move-partial-down"
   ],
   "repository": "https://github.com/remanc/edit-code-blocks",
   "license": "MIT",

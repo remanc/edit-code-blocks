@@ -9,3 +9,7 @@
 # https://atom.io/docs/latest/advanced/keymaps
 '.workspace':
   'ctrl-alt-c': 'edit-code-blocks:capture'
+
+'.edit-code-blocks-view':
+  'cmd-down': 'edit-code-blocks:move-partial-down'
+  'cmd-up': 'edit-code-blocks:move-partial-up'

@@ -24,6 +24,13 @@ nextToFocus = (view) ->
   else
     view.prev().view()
 
+move = (view, getPlaceholder, attach) ->
+  active = findActivePartialView(view)
+  placeHolder = getPlaceholder(active)
+  if placeHolder.length > 0
+    active.detach()
+    attach(placeHolder, active)
+    active.focus()
 
 module.exports =
 class EditCodeBlocksView extends ScrollView
@@ -34,6 +41,8 @@ class EditCodeBlocksView extends ScrollView
   constructor: ({@host, @pathname}) ->
     super
     @command 'core:close', (e) => @closePartial(e)
+    @command 'edit-code-blocks:move-partial-down', => @moveActiveDown()
+    @command 'edit-code-blocks:move-partial-up', => @moveActiveUp()
 
   getTitle: ->
     @getUri()
@@ -43,6 +52,16 @@ class EditCodeBlocksView extends ScrollView
 
   save: ->
     findActiveEditor(this)?.save()
+
+  moveActiveDown: ->
+    move this,
+      (active) -> active.next(),
+      (placeHolder, active) -> placeHolder.after(active)
+
+  moveActiveUp: ->
+    move this,
+      (active) -> active.prev(),
+      (placeHolder, active) -> placeHolder.before(active)
 
   addPartial: (editor) ->
     selection = editor.getSelection()
