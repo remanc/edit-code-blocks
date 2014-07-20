@@ -41,8 +41,10 @@ class EditCodeBlocksView extends ScrollView
   constructor: ({@host, @pathname}) ->
     super
     @command 'core:close', (e) => @closePartial(e)
-    @command 'edit-code-blocks:move-partial-down', => @moveActiveDown()
-    @command 'edit-code-blocks:move-partial-up', => @moveActiveUp()
+    @command 'edit-code-blocks:jump-partial-down', => @jumpDown()
+    @command 'edit-code-blocks:jump-partial-up', => @jumpUp()
+    @command 'edit-code-blocks:move-partial-down', => @moveDown()
+    @command 'edit-code-blocks:move-partial-up', => @moveUp()
 
   getTitle: ->
     @getUri()
@@ -53,15 +55,21 @@ class EditCodeBlocksView extends ScrollView
   save: ->
     findActiveEditor(this)?.save()
 
-  moveActiveDown: ->
+  moveDown: ->
     move this,
       (active) -> active.next(),
       (placeHolder, active) -> placeHolder.after(active)
 
-  moveActiveUp: ->
+  moveUp: ->
     move this,
       (active) -> active.prev(),
       (placeHolder, active) -> placeHolder.before(active)
+
+  jumpDown: ->
+    findActivePartialView(this).next().view()?.focus()
+
+  jumpUp: ->
+    findActivePartialView(this).prev().view()?.focus()
 
   addPartial: (editor) ->
     selection = editor.getSelection()

@@ -5,6 +5,8 @@
   "description": "A short description of your package",
   "activationEvents": [
     "edit-code-blocks:capture",
+    "edit-code-blocks:jump-partial-up",
+    "edit-code-blocks:jump-partial-down",
     "edit-code-blocks:move-partial-up",
     "edit-code-blocks:move-partial-down"
   ],
