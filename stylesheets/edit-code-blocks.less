@@ -1,4 +1,7 @@
 @import "ui-variables";
+@import "octicon-mixins";
+
+@link-icon-size: 11px;
 
 .edit-code-blocks-view {
   background-color: @inset-panel-background-color;
@@ -16,4 +19,8 @@
 
 .edit-code-blocks-view .item-views .editor {
   position: relative;
+}
+
+.edit-code-blocks-view .btn {
+  .octicon(link, @link-icon-size);
 }

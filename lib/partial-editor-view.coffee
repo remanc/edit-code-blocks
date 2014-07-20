@@ -40,7 +40,7 @@ class PartialEditorView extends View
       @div class: "inset-panel", =>
         @div class: "panel-heading", =>
           @div class: 'btn-toolbar pull-right', =>
-            @button class: 'btn', outlet: 'goEl', 'Go to file'
+            @button class: 'btn', outlet: 'goEl'
           @span outlet: 'titleEl'
         @div class: "panel-body padding", =>
           @div class: "item-views", outlet: 'editorEl'
