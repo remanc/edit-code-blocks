@@ -87,4 +87,6 @@ class PartialEditorView extends View
     clearTimeout @snapTimeout if @snapTimeout
     @snapTimeout = setTimeout (=> @setPartial()), SNAP_TIMEOUT
 
-  focus: -> @editorView.focus()
+  focus: ->
+    @editorView.focus()
+    @trigger 'partial-editor-focused', [this]
