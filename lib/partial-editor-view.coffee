@@ -36,14 +36,14 @@ module.exports =
 class PartialEditorView extends View
 
   @content: ->
-    @div class: "partial-editor tool-panel panel-bottom", =>
-      @div class: "inset-panel", =>
-        @div class: "panel-heading", =>
+    @div class: 'partial-editor tool-panel panel-bottom', =>
+      @div class: 'inset-panel', =>
+        @div class: 'panel-heading', =>
           @div class: 'btn-toolbar pull-right', =>
             @button class: 'btn', outlet: 'goEl'
-          @span outlet: 'titleEl'
-        @div class: "panel-body padding", =>
-          @div class: "item-views", outlet: 'editorEl'
+          @span class: 'pev-title', outlet: 'titleEl'
+        @div class: 'panel-body padding', =>
+          @div class: 'item-views', outlet: 'editorEl'
 
   initialize: (@editor, screenRowRange) ->
     range = [[screenRowRange[0], 0], [screenRowRange[1], MAX_LINE_LENGTH]]
@@ -62,8 +62,8 @@ class PartialEditorView extends View
 
   handleEvents: ->
     @subscribe @editor, 'modified-status-changed', => @setTitle()
-    @subscribe @editor, 'screen-lines-changed', => @setPartial()
-    @subscribe @editorView, 'editor:attached', => @setPartial()
+    @subscribe @editor, 'screen-lines-changed', => @setBounds()
+    @subscribe @editorView, 'editor:attached', => @setBounds()
     @subscribe @editorView.verticalScrollbar, 'scroll', => @snapToPartial()
     @subscribe @goEl, 'click', =>
       atom.workspaceView.open @editor.buffer.getUri(),
@@ -79,14 +79,14 @@ class PartialEditorView extends View
     title += ' ~' if @editor.isModified()
     @titleEl.html title
 
-  setPartial: ->
-    @editorView.scrollTop markerTopPx @marker, @editorView
+  setBounds: ->
     @editorView.css
       height: markerHeightPx @marker, @editorView
+    @editorView.scrollTop markerTopPx @marker, @editorView
 
   snapToPartial: ->
     clearTimeout @snapTimeout if @snapTimeout
-    @snapTimeout = setTimeout (=> @setPartial()), SNAP_TIMEOUT
+    @snapTimeout = setTimeout (=> @setBounds()), SNAP_TIMEOUT
 
   focus: ->
     @editorView.focus()
