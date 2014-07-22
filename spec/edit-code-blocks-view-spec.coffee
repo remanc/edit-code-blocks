@@ -2,11 +2,29 @@ EditCodeBlocksView = require '../lib/edit-code-blocks-view'
 
 describe 'EditCodeBlocksView', ->
 
+  beforeEach ->
+    @view = new EditCodeBlocksView protocol: 'ecb:', host: '1'
+    @view.attachToDom()
+
   describe 'getUri', ->
 
-    it 'returns the right uri'
+    it 'returns the right uri', ->
+      v1 = new EditCodeBlocksView protocol: 'foo:', host: '1'
+      expect(v1.getUri()).toBe('foo://1')
+      v2 = new EditCodeBlocksView protocol: 'bar:', host: '2'
+      expect(v2.getUri()).toBe('bar://2')
 
-  describe 'events', ->
+  xdescribe 'addPartial', ->
+
+    it 'creates a new PartialEditorView with the right selection and appends'
+
+    it 'clears the previous selection on the editor'
+
+    it 'uses a copy of the editor'
+
+    it 'focuses on the new partialEditor'
+
+  xdescribe 'events', ->
 
     describe 'when core:close', ->
 
@@ -50,7 +68,11 @@ describe 'EditCodeBlocksView', ->
 
       it 'keeps focus after moving'
 
-  describe 'focus', ->
+  xdescribe 'save', ->
+
+    it 'saves the active partial when a save command is triggered'
+
+  xdescribe 'focus', ->
 
     it 'focuses on last focused partial'
 
